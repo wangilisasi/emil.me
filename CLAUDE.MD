@@ -1,5 +1,13 @@
 # Instructions for Claude
 
+## VS Code Migration Status
+
+- Primary active instructions now live in:
+   - `.github/copilot-instructions.md`
+   - `.github/instructions/blog-post-workflow.instructions.md`
+   - `.github/instructions/dependency-updates.instructions.md`
+- Keep this file as historical/reference context unless explicitly requested otherwise.
+
 This document contains important instructions and notes for Claude when working on this project.
 
 ## CRITICAL GUIDELINES
