@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
-import IconRss from "@/assets/icons/IconRss.svg";
 import Card from "@/components/Card.astro";
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
@@ -16,12 +15,13 @@ import getSortedPosts from "@/utils/getSortedPosts";
 const posts = await getCollection("blog");
 
 const sortedPosts = getSortedPosts(posts);
-const posts2025AndLater = sortedPosts.filter(({ data }) => data.pubDatetime.getFullYear() >= 2025);
+const publishedPosts = sortedPosts.filter(({ data }) => !data.draft);
+const posts2025AndLater = publishedPosts.filter(({ data }) => data.pubDatetime.getFullYear() >= 2025);
 const featuredPosts = posts2025AndLater.filter(({ data }) => data.featured);
 const recentPosts = posts2025AndLater.filter(({ data }) => !data.featured);
 ---
 
-<Layout description="Emil Patrick's personal website. Thoughts on software engineering and technology.">
+<Layout description="Personal website of Emil Patrick. Notes on software, security, AI, and building useful things.">
   <StructuredData type="WebSite" data={{}} />
   <StructuredData type="Person" data={{}} />
   <Header />
@@ -40,24 +40,10 @@ const recentPosts = posts2025AndLater.filter(({ data }) => !data.featured);
             <h1 class="my-2 inline-block text-2xl font-bold sm:my-4 sm:text-3xl">
               Hi, I'm Emil Patrick.
             </h1>
-            <a
-              target="_blank"
-              href="/rss.xml"
-              class="inline-block"
-              aria-label="rss feed"
-              title="RSS Feed"
-            >
-              <IconRss
-                width={20}
-                height={20}
-                class="scale-125 stroke-accent stroke-3"
-              />
-              <span class="sr-only">RSS Feed</span>
-            </a>
           </div>
           <p>
-            Welcome to my personal website. <br />
-            I write about software engineering, design, and technology.
+            Welcome to my corner of the internet. <br />
+            I write about software, security, AI, and building useful things.
           </p>
           {
             // only display if at least one social link is enabled
@@ -90,7 +76,7 @@ const recentPosts = posts2025AndLater.filter(({ data }) => !data.featured);
     }
 
     {
-      recentPosts.length > 0 && (
+      recentPosts.length > 0 ? (
         <section id="recent-posts" class="pt-12 pb-6">
           <ul>
             {recentPosts.map(
@@ -98,6 +84,13 @@ const recentPosts = posts2025AndLater.filter(({ data }) => !data.featured);
                 index < SITE.postPerIndex && <Card variant="h3" {...data} showImage={false} />,
             )}
           </ul>
+        </section>
+      ) : (
+        <section id="recent-posts" class="pt-12 pb-6">
+          <div class="rounded-lg border border-gray-200 dark:border-gray-700 p-6">
+            <h2 class="text-xl font-semibold">No published posts yet.</h2>
+            <p class="mt-2 opacity-80">The site shell is ready. The writing will follow.</p>
+          </div>
         </section>
       )
     }

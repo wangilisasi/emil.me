@@ -1,14 +1,27 @@
 ---
-title: "My Current AI Dev Workflow"
-description: "Went fully back to Ghostty, VS Code on the side, and Claude Code as my main driver. Here's what actually works after months of experimentation."
+title: "Post Template 2"
+description: "Replace this with a short summary of the post."
 pubDatetime: 2025-08-25T10:00:00+01:00
-heroImage: /assets/img/2025/optimal-ai-development-workflow/hero.png
-heroImageAlt: "AI Development Workflow Setup"
-tags: ["ai", "claude", "development", "claude-code", "workflow", "productivity", "tools", "best-practices"]
+draft: true
+tags:
+  - template
+  - draft
 ---
 
-This is a generic blog post template. Feel free to replace this text with your own content regarding your thoughts and experiences.
+This is a draft template.
 
-## Heading
+Replace everything in this file before publishing.
 
-Add your own sections and write about anything that sparks joy!
+## Opening
+
+Introduce the topic clearly.
+
+## Main Points
+
+- What happened
+- What mattered
+- What you learned
+
+## Closing
+
+End with a useful conclusion.

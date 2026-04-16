@@ -31,10 +31,10 @@ interface Site {
 
 // Site configuration
 export const SITE: Site = {
-  website: "https://your-domain.com/",
+  website: "https://emil.me/",
   author: "Emil Patrick",
-  profile: "https://your-domain.com/about",
-  desc: "Your site description here. Replace with your own bio or value proposition.",
+  profile: "https://emil.me/about",
+  desc: "Personal website of Emil Patrick, writing about software, security, AI, and building useful things.",
   title: "Emil Patrick",
   ogImage: "emil-avatar.png",
   lightAndDarkMode: true,
@@ -46,11 +46,11 @@ export const SITE: Site = {
   editPost: {
     enabled: true,
     text: "Edit on GitHub",
-    url: "https://github.com/yourusername/your-repo/edit/main/",
+    url: "https://github.com/wangilisasi/emil.me/edit/main/",
   },
   dynamicOgImage: true,
   lang: "en",
-  timezone: "America/New_York",
+  timezone: "Africa/Nairobi",
 };
 
 export const SITE_TITLE = SITE.title;
@@ -71,28 +71,22 @@ export const NAV_LINKS: SocialLink[] = [
 // Social media links
 export const SOCIAL_LINKS: SocialLink[] = [
   {
-    href: "https://github.com/yourusername",
+    href: "https://github.com/wangilisasi",
     label: "GitHub",
-  },
-  {
-    href: "https://twitter.com/yourusername",
-    label: "Twitter",
-  },
-  {
-    href: "https://bsky.app/profile/your-domain.com",
-    label: "BlueSky",
   },
   {
     href: "/rss.xml",
     label: "RSS",
+  },
+  {
+    href: "mailto:wangilisasi@gmail.com",
+    label: "Email",
   },
 ];
 
 // Icon map for social media
 export const ICON_MAP: Record<string, string> = {
   GitHub: "github",
-  Twitter: "twitter",
-  BlueSky: "bsky",
   RSS: "rss",
   Email: "mail",
 };

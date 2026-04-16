@@ -1,19 +1,27 @@
 ---
-title: "The Future of Vibe Coding: Building with AI, Live and Unfiltered"
+title: "Post Template 3"
+description: "Replace this with a short summary of the post."
 pubDatetime: 2025-06-01T16:00:00.000+01:00
-description: "I demonstrate 'vibe coding' - a new approach to software development with AI, building two apps from scratch in a 3-hour live workshop."
+draft: true
 tags:
-  - AI
-  - Development
-  - Cursor
-  - Claude
-  - Swift
-  - Electron
-  - Workshop
+  - template
+  - draft
 ---
 
-This is a generic blog post template. Feel free to replace this text with your own content regarding your thoughts and experiences.
+This is a draft template.
 
-## Heading
+Replace everything in this file before publishing.
 
-Add your own sections and write about anything that sparks joy!
+## Opening
+
+State the idea or argument.
+
+## Main Points
+
+- Context
+- Evidence
+- Opinion
+
+## Closing
+
+Finish with the takeaway or next step.

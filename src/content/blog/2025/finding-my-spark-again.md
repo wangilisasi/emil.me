@@ -1,17 +1,27 @@
 ---
-title: Finding My Spark Again
+title: "Post Template 1"
+description: "Replace this with a short summary of the post."
 pubDatetime: 2025-06-01T14:00:00.000+01:00
-description: "I reflect on my post-exit journey from emptiness to rediscovering my passion for building, sparked by AI's transformative potential."
+draft: true
 tags:
-  - Career
-  - Entrepreneurship
-  - Personal-Growth
-  - AI
-  - Building
+  - template
+  - draft
 ---
 
-This is a generic blog post template. Feel free to replace this text with your own content regarding your thoughts and experiences.
+This is a draft template.
 
-## Heading
+Replace everything in this file before publishing.
 
-Add your own sections and write about anything that sparks joy!
+## Opening
+
+Write the core idea here.
+
+## Main Points
+
+- Point one
+- Point two
+- Point three
+
+## Closing
+
+Wrap up with the key takeaway.

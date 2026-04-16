@@ -3,20 +3,19 @@ import type { APIRoute } from "astro";
 export const GET: APIRoute = async () => {
   const markdownContent = `# Emil Patrick
 
-Software developer and writer.
+Personal site of Emil Patrick.
 
 ## Navigation
 
 - [About](/about.md)
-- [Recent Posts](/posts.md)
+- [Posts](/posts.md)
 - [Archives](/archives.md)
 - [RSS Feed](/rss.xml)
 
 ## Links
 
-- Twitter: [@yourusername](https://twitter.com/yourusername)
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your@email.com
+- GitHub: [wangilisasi](https://github.com/wangilisasi)
+- Email: wangilisasi@gmail.com
 
 ---
 

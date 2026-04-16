@@ -3,35 +3,14 @@ import { SITE } from "./consts";
 export const SOCIALS = [
   {
     name: "Github",
-    href: "https://github.com/yourusername",
-    linkTitle: ` ${SITE.title} on Github`,
+    href: "https://github.com/wangilisasi",
+    linkTitle: `${SITE.title} on GitHub`,
     icon: "github",
     active: true,
   },
   {
-    name: "X",
-    href: "https://x.com/yourusername",
-    linkTitle: `${SITE.title} on X`,
-    icon: "twitter",
-    active: true,
-  },
-  {
-    name: "BlueSky",
-    href: "https://bsky.app/profile/your-domain.com",
-    linkTitle: `${SITE.title} on BlueSky`,
-    icon: "bluesky",
-    active: true,
-  },
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/yourusername/",
-    linkTitle: `${SITE.title} on LinkedIn`,
-    icon: "linkedin",
-    active: true,
-  },
-  {
     name: "Mail",
-    href: "mailto:your@email.com",
+    href: "mailto:wangilisasi@gmail.com",
     linkTitle: `Send an email to ${SITE.title}`,
     icon: "mail",
     active: true,

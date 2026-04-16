@@ -8,9 +8,9 @@
   "redirects": [
     {
       "source": "/:path*.md",
-      "has": [{ "type": "host", "value": "your-domain.com" }],
+      "has": [{ "type": "host", "value": "emil.me" }],
       "missing": [{ "type": "header", "key": "accept", "value": "(?i).*text/markdown.*" }],
-      "destination": "https://your-domain.com/:path*",
+      "destination": "https://emil.me/:path*",
       "permanent": false
     },
     {
@@ -59,10 +59,10 @@
       "has": [
         {
           "type": "host",
-          "value": "^(?!(your-domain\\.com|www\\.your-domain\\.com|.*\\.vercel\\.app)).*$"
+          "value": "^(?!(emil\\.me|www\\.emil\\.me|.*\\.vercel\\.app)).*$"
         }
       ],
-      "destination": "https://your-domain.com/:path*",
+      "destination": "https://emil.me/:path*",
       "permanent": true
     }
   ],
@@ -141,7 +141,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self' https://your-domain.com https://*.vercel.app https://platform.twitter.com https://syndication.twitter.com https://player.vimeo.com https://vimeo.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data: https://your-domain.com https://*.vercel.app https://platform.twitter.com https://cdn.syndication.twimg.com https://player.vimeo.com https://vercel.live https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://your-domain.com https://*.vercel.app https://platform.twitter.com; img-src 'self' data: https: blob: https://ghchart.rshah.org; font-src 'self' https://your-domain.com https://*.vercel.app; connect-src 'self' https://your-domain.com https://*.vercel.app https://platform.twitter.com https://player.vimeo.com https://vimeo.com https://vitals.vercel-insights.com https://va.vercel-scripts.com; media-src 'self' https://your-domain.com https://*.vercel.app https://player.vimeo.com https://vimeo.com; object-src 'none'; frame-ancestors 'none'; frame-src https://platform.twitter.com https://syndication.twitter.com https://player.vimeo.com https://vercel.live https://www.youtube.com https://youtube.com https://*.youtube.com https://www.youtube-nocookie.com https://*.youtube-nocookie.com; worker-src 'self' blob:"
+          "value": "default-src 'self' https://emil.me https://*.vercel.app https://platform.twitter.com https://syndication.twitter.com https://player.vimeo.com https://vimeo.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data: https://emil.me https://*.vercel.app https://platform.twitter.com https://cdn.syndication.twimg.com https://player.vimeo.com https://vercel.live https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://emil.me https://*.vercel.app https://platform.twitter.com; img-src 'self' data: https: blob: https://ghchart.rshah.org; font-src 'self' https://emil.me https://*.vercel.app; connect-src 'self' https://emil.me https://*.vercel.app https://platform.twitter.com https://player.vimeo.com https://vimeo.com https://vitals.vercel-insights.com https://va.vercel-scripts.com; media-src 'self' https://emil.me https://*.vercel.app https://player.vimeo.com https://vimeo.com; object-src 'none'; frame-ancestors 'none'; frame-src https://platform.twitter.com https://syndication.twitter.com https://player.vimeo.com https://vercel.live https://www.youtube.com https://youtube.com https://*.youtube.com https://www.youtube-nocookie.com https://*.youtube-nocookie.com; worker-src 'self' blob:"
         }
       ]
     }

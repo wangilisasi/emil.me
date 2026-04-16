@@ -29,52 +29,59 @@ const months = [
   <Header />
   <main id="main-content" class="mx-auto w-full max-w-3xl px-4 pb-4">
     <h1 class="text-2xl font-semibold sm:text-3xl mt-8">All Posts</h1>
-    <p class="mt-2 mb-6 italic">Browse all blog posts by year and month</p>
+    <p class="mt-2 mb-6 italic">Published writing lives here.</p>
     {
-      Object.entries(
-        getPostsByGroupCondition(posts, (post) => {
-          const pubDate = post.data.pubDatetime || new Date();
-          return new Date(pubDate).getFullYear();
-        }),
+      posts.length === 0 ? (
+        <div class="mt-8 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
+          <p class="text-lg font-medium">No published posts yet.</p>
+          <p class="mt-2 opacity-80">Draft templates exist in the repo, but nothing is live yet.</p>
+        </div>
+      ) : (
+        Object.entries(
+          getPostsByGroupCondition(posts, (post) => {
+            const pubDate = post.data.pubDatetime || new Date();
+            return new Date(pubDate).getFullYear();
+          }),
+        )
+          .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
+          .map(([year, yearGroup]) => (
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
+                {year}
+                <sup class="text-sm ml-1">{yearGroup.length}</sup>
+              </h2>
+              {Object.entries(
+                getPostsByGroupCondition(yearGroup, (post) => {
+                  const pubDate = post.data.pubDatetime || new Date();
+                  return new Date(pubDate).getMonth() + 1;
+                }),
+              )
+                .sort(([monthA], [monthB]) => Number(monthB) - Number(monthA))
+                .map(([month, monthGroup]) => (
+                  <div class="mt-8">
+                    <h3 class="text-xl font-bold mb-4">
+                      {months[Number(month) - 1]}
+                      <sup class="text-sm ml-1">{monthGroup.length}</sup>
+                    </h3>
+                    <ul>
+                      {monthGroup
+                        .sort((a, b) => {
+                          const aDate = a.data.pubDatetime || new Date();
+                          const bDate = b.data.pubDatetime || new Date();
+                          return (
+                            Math.floor(new Date(bDate).getTime() / 1000) -
+                            Math.floor(new Date(aDate).getTime() / 1000)
+                          );
+                        })
+                        .map((data) => (
+                          <Card {...data} />
+                        ))}
+                    </ul>
+                  </div>
+                ))}
+            </div>
+          ))
       )
-        .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
-        .map(([year, yearGroup]) => (
-          <div class="mb-8">
-            <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
-              {year}
-              <sup class="text-sm ml-1">{yearGroup.length}</sup>
-            </h2>
-            {Object.entries(
-              getPostsByGroupCondition(yearGroup, (post) => {
-                const pubDate = post.data.pubDatetime || new Date();
-                return new Date(pubDate).getMonth() + 1;
-              }),
-            )
-              .sort(([monthA], [monthB]) => Number(monthB) - Number(monthA))
-              .map(([month, monthGroup]) => (
-                <div class="mt-8">
-                  <h3 class="text-xl font-bold mb-4">
-                    {months[Number(month) - 1]}
-                    <sup class="text-sm ml-1">{monthGroup.length}</sup>
-                  </h3>
-                  <ul>
-                    {monthGroup
-                      .sort((a, b) => {
-                        const aDate = a.data.pubDatetime || new Date();
-                        const bDate = b.data.pubDatetime || new Date();
-                        return (
-                          Math.floor(new Date(bDate).getTime() / 1000) -
-                          Math.floor(new Date(aDate).getTime() / 1000)
-                        );
-                      })
-                      .map((data) => (
-                        <Card {...data} />
-                      ))}
-                  </ul>
-                </div>
-              ))}
-          </div>
-        ))
     }
   </main>
   <Footer />
