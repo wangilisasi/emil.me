@@ -4,18 +4,69 @@
 
 <!-- Vercel Analytics -->
 <script>
-  if (typeof window !== 'undefined' && import.meta.env.PROD) {
-    import('@vercel/analytics').then(({ inject }) => {
-      inject();
-    });
-  }
-</script>
+  const COOKIE_CONSENT_KEY = "emil-cookie-consent";
+  const COOKIE_CONSENT_ACCEPTED = "accepted";
+  const COOKIE_CONSENT_REJECTED = "rejected";
+  const PRIVACY_REGION_ENDPOINT = "/api/privacy-region";
 
-<!-- Vercel Speed Insights -->
-<script>
-  if (typeof window !== 'undefined' && import.meta.env.PROD) {
-    import('@vercel/speed-insights').then(({ injectSpeedInsights }) => {
-      injectSpeedInsights();
-    });
+  let analyticsLoaded = false;
+
+  function getAnalyticsConsent() {
+    try {
+      return localStorage.getItem(COOKIE_CONSENT_KEY);
+    } catch {
+      return null;
+    }
   }
+
+  async function requiresCookieConsent() {
+    try {
+      const response = await fetch(PRIVACY_REGION_ENDPOINT, {
+        cache: "no-store",
+        headers: { accept: "application/json" },
+      });
+
+      if (!response.ok) return true;
+
+      const region = await response.json();
+      return region.requiresConsent === true;
+    } catch {
+      return true;
+    }
+  }
+
+  async function canLoadAnalytics() {
+    const consent = getAnalyticsConsent();
+
+    if (consent === COOKIE_CONSENT_ACCEPTED) return true;
+    if (consent === COOKIE_CONSENT_REJECTED) return false;
+
+    return !(await requiresCookieConsent());
+  }
+
+  async function loadAnalytics() {
+    if (!import.meta.env.PROD || analyticsLoaded || !(await canLoadAnalytics())) return;
+
+    analyticsLoaded = true;
+
+    const [{ inject }, { injectSpeedInsights }] = await Promise.all([
+      import("@vercel/analytics"),
+      import("@vercel/speed-insights"),
+    ]);
+
+    inject();
+    injectSpeedInsights();
+  }
+
+  loadAnalytics();
+
+  document.addEventListener("astro:page-load", loadAnalytics);
+  window.addEventListener("cookie-consent", (event) => {
+    if (
+      event instanceof CustomEvent &&
+      event.detail?.consent === COOKIE_CONSENT_ACCEPTED
+    ) {
+      loadAnalytics();
+    }
+  });
 </script>
