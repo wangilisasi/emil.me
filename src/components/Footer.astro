@@ -11,7 +11,8 @@ const { noMarginTop = false } = Astro.props;
 
 <footer class:list={["w-full", { "mt-auto": !noMarginTop }]}>
   <Hr noPadding />
-  <div class="flex items-center justify-center py-6 sm:py-4">
+  <div class="flex flex-col items-center justify-center gap-3 py-6 sm:py-4">
+    <p class="text-sm opacity-75">&copy; 2026 Emil Patrick</p>
     <Socials centered />
   </div>
 </footer>
