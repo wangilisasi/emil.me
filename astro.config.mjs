@@ -1,14 +1,13 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+
 import mdx from "@astrojs/mdx";
 import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
-import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
-import remarkToc from "remark-toc";
+import { defineConfig } from "astro/config";
 import remarkCollapse from "remark-collapse";
-import { remarkLazyLoadImages } from "./src/utils/remarkLazyLoadImages.mjs";
+import remarkToc from "remark-toc";
 import { SITE } from "./src/config";
-import AstroPWA from "@vite-pwa/astro";
+import { remarkLazyLoadImages } from "./src/utils/remarkLazyLoadImages.mjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,7 +16,7 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [
       remarkToc,
-      // @ts-ignore - TypeScript has issues with remark plugin tuple syntax
+      // @ts-expect-error - TypeScript has issues with remark plugin tuple syntax
       [remarkCollapse, { test: "Table of contents" }],
       remarkLazyLoadImages,
     ],
@@ -98,80 +97,6 @@ export default defineConfig({
         // from the actual post data, which requires more complex integration
 
         return item;
-      },
-    }),
-    react(),
-    AstroPWA({
-      registerType: "autoUpdate",
-      includeAssets: ["favicon.ico", "emil-avatar.png"],
-      manifest: {
-        name: "Emil Patrick",
-        short_name: "emilpatrick",
-        description: "Your site description here. Replace with your own bio or value proposition.",
-        theme_color: "#006cac",
-        background_color: "#fdfdfd",
-        display: "standalone",
-        orientation: "portrait",
-        scope: "/",
-        start_url: "/",
-        icons: [
-          {
-            src: "favicon.ico",
-            sizes: "48x48",
-            type: "image/x-icon",
-          },
-          {
-            src: "emil-avatar.png",
-            sizes: "192x192",
-            type: "image/png",
-            purpose: "any",
-          },
-          {
-            src: "emil-avatar.png",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "any maskable",
-          },
-        ],
-      },
-      workbox: {
-        navigateFallback: "/404",
-        globPatterns: ["**/*.{css,js,html,svg,png,jpg,jpeg,gif,webp,woff,woff2,ttf,eot,ico}"],
-        runtimeCaching: [
-          {
-            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-            handler: "CacheFirst",
-            options: {
-              cacheName: "google-fonts-cache",
-              expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
-              },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
-            },
-          },
-          {
-            urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp)$/,
-            handler: "CacheFirst",
-            options: {
-              cacheName: "images-cache",
-              expiration: {
-                maxEntries: 100,
-                maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
-              },
-            },
-          },
-        ],
-      },
-      devOptions: {
-        enabled: true,
-        suppressWarnings: true,
-        navigateFallbackAllowlist: [/^\//],
-      },
-      experimental: {
-        directoryAndTrailingSlashHandler: true,
       },
     }),
   ],
